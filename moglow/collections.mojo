@@ -1,5 +1,3 @@
-var t = 1
-
 from collections.dict import Dict, KeyElement
 
 

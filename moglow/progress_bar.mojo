@@ -3,8 +3,6 @@ from moglow.tty import get_term_size
 from moglow import tty
 from moglow import Color, Style
 
-let PROGRESS: String = "━"
-
 
 struct ProgressBar:
     var char: String
