@@ -1,0 +1,19 @@
+from python import Python, PythonObject
+
+
+struct TerminalSize(Stringable):
+    var width: Int
+    var height: Int
+
+    fn __init__(inout self, w: Int, h: Int):
+        self.width = w
+        self.height = h
+
+    fn __str__(self) -> String:
+        return "w:" + str(self.width) + " h:" + str(self.height)
+
+
+fn get_term_size() raises -> TerminalSize:
+    let pyos = Python.import_module("os")
+    let size_obj: PythonObject = pyos.get_terminal_size()
+    return TerminalSize(int(size_obj[0]), int(size_obj[1]))
