@@ -7,7 +7,7 @@ from moglow.markup.parser import parse
 
 
 fn main():
-    let report = bench.run[bench_moglow](1, 4, 3, 10)
+    var report = bench.run[bench_moglow](1, 4, 3, 10)
     report.print_full("ms")
 
 
@@ -293,7 +293,7 @@ fn bench_moglow():
     for k in range(10):
         for i in range(len(STRINGS)):
             try:
-                let markup = parse(STRINGS[i])
+                var markup = parse(STRINGS[i])
             except:
                 print("Failed to parse markup: " + STRINGS[i])
                 continue

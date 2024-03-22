@@ -5,11 +5,17 @@ from moglow import Style, FontStyle, Color
 
 
 fn parse(s: String) raises -> String:
-    let length = len(s)
+    """
+    ## WARNING: EXPERIMENTAL.
+
+    Parses a string into tokens.
+
+    """
+    var length = len(s)
     var i = 0
     var output: String = ""
     while i < length:
-        let start = i
+        var start = i
 
         while i < length:
             if s[i] == "[" or s[i] == "]":
@@ -38,18 +44,18 @@ fn parse(s: String) raises -> String:
 
         i += 1
 
-        let token_start = i
+        var token_start = i
 
         while i < length and s[i] != "]":
             i += 1
 
-        let token_end = i
+        var token_end = i
         if i >= length:
             raise Error("Missing closing brace")
         i += 1
 
-        let tokens = s[token_start:token_end]
-        let token_list = tokens.split(" ")
+        var tokens = s[token_start:token_end]
+        var token_list = tokens.split(" ")
         var style = Style()
         var bright = False
         for j in range(len(token_list)):

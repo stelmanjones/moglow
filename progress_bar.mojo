@@ -36,7 +36,7 @@ struct ProgressBar:
         _ = self.value = 0
 
     fn increment(inout self, n: Int = 1) raises:
-        let res = self.value + n
+        var res = self.value + n
         if res > self.max:
             self.style = Style(fg=Color.Red)
             self.render()
@@ -58,11 +58,11 @@ struct ProgressBar:
                 s += self.char
             else:
                 s += " "
-        let p = int(self.value * 100 / self.max)
+        var p = int(self.value * 100 / self.max)
         tty.erase_line()
-        print_no_newline(self.style.string_render(s) + " " + str(p) + "%")
+        print_no_newline(self.style.sprint(s) + " " + str(p) + "%")
 
-    fn string_render(self) -> String:
+    fn sprint(self) -> String:
         var s: String = ""
         for i in range(self.width):
             if i < int(self.value * self.width / self.max):
@@ -70,5 +70,5 @@ struct ProgressBar:
             else:
                 s += " "
 
-        let p = int(self.value * 100 / self.max)
-        return self.style.string_render(s) + " " + str(p) + "%"
+        var p = int(self.value * 100 / self.max)
+        return self.style.sprint(s) + " " + str(p) + "%"
